@@ -30,7 +30,7 @@ public class Excursion {
 
     @Column(name="create_date")
     @CreationTimestamp
-    private Date creat_date;
+    private Date create_date;
 
     @Column(name="last_update")
     @UpdateTimestamp
@@ -41,6 +41,6 @@ public class Excursion {
     private Vacation vacation;
 
     @ManyToMany(mappedBy="excursions" )
-    private Set<CartItem>cartItems;
+    private Set<CartItem>cartitems;
 
 }
