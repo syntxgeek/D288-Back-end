@@ -20,6 +20,22 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase){
+
+        //to validate order before saving
+        if(purchase.getCustomer()==null){
+            return new PurchaseResponse("Customer is required to place an order.");
+        }
+        if(purchase.getCart()==null){
+            return new PurchaseResponse("Cart is required to place an order.");
+
+        }
+        if(purchase.getCartItems()==null||purchase.getCartItems().isEmpty()){
+            return new PurchaseResponse("Cart is empty! Add a vacation before checking out.");
+        }
+        if(purchase.getCart().getParty_size()<1){
+            return new PurchaseResponse("Party size must be greater than zero.");
+        }
+
         //get cart from the purchase
         Cart cart=purchase.getCart();
 
